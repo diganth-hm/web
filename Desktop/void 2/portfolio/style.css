@@ -1,0 +1,60 @@
+body{
+    background-color:#0f172a;
+   color:white;
+}
+a{
+    color:aqua;
+
+}
+#home{
+    text-align:center;
+   font-size:18px;
+    font-style:inherit;
+}
+section{
+    max-width:1000px;
+    margin:auto;
+    padding:60px 40px;
+    font-style:inherit;
+}
+#para
+{
+    font-size:20px;
+     font-style:inherit;
+}
+#paragraph{
+    font-size:26px;
+     font-style:inherit;
+}
+span{
+    margin-left:117px;
+     font-style:inherit;
+}
+#projects{
+    color:blanchedalmond;
+}
+h2{
+    color:rgb(34, 140, 201);
+}
+#proj{
+    font-size:20px;
+     font-style:inherit;
+}
+#hed{
+     background-color: #020617;
+     box-shadow:8px 8px 2px 2px #3d3d3d;;
+}
+h1{
+    color:rgb(34, 140, 201);
+}
+#foot{
+    background-color: #020617;
+}
+footer{margin-left: 750px;
+}
+button{
+    background-color: #020617;
+}
+#cont{
+    color:blanchedalmond;
+}

@@ -1,0 +1,57 @@
+body{
+    background-color:black;
+
+}
+#logo{
+    color:rgb(247, 1, 1);
+    display:flex;
+    mask-image:url("netflix.jpg");
+
+}
+img{
+    width:100px;
+    height:100px;
+}
+.box{
+    color:white;
+    background-color:rgba(0, 0, 0, 0.699);
+    margin-top:200px;
+    margin-left:800px;
+    width:350px;
+    height:450px;
+}
+#but{
+    background-color:red;
+    width:250px;
+    color:white;
+   margin-left:50px;
+   height:30px;
+
+}
+#rem{
+    width:14px;
+    height:14px;
+    margin-left:50px;
+    
+}
+
+#hhh{
+    font-size:27px;
+    margin-top:0px;
+   margin-left:50px;
+}
+input{
+    margin-left:50px;
+   width:250px;
+    height:25px;
+}
+#para{
+    margin-left:50px;
+}
+#bold{
+    color:blue;
+}
+
+body{
+    background-image:url("back.jpg");
+}
