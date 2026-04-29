@@ -1,29 +1,31 @@
-const express =  require("express");
-const cors= require("cors");
+const bcrypt = require("bcryptjs");
+const user = require ("./models/user");
 
-const app  = express ();
+app.post("/signup",async (req,res) =>{
 
-app.use(cors());
-app.use(express.json());
+    try{
+        const {email,password}=req.body;
 
-app.get("/", (req,res)=>{
-    res.send("API running");
+        //check the user exisstence
+        const existingUser = await UserActivation.findOne({email});
+        if (existingUser)
+        {
+            return res.json({sucess:false,message:"User already exisits"});
 
-});
-app.listen(5000,() =>{
-    console.log("server Running on port 5000");
-});
+        }
+        const newUser =new user({
+            email,
+            passwword:hashedPassword
+        });
+       await newUser.save();
 
-//login route
+       res.json({sucess :true ,message:"user created"});
 
-app.post("/login",(req,res)=>{
-    const{email,password}=req.body;
+        }
 
-    //just for testsing 
-    if(email=="diganthhm714@gmail.com" && password == "12345678"){
-        res.json({success:true});
-    }
-    else{
-        res.json({success:false});
-    }
+        catch(error){
+            console.error(error);
+            res.status(500).json({success:false});
+
+        }
 });
