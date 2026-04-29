@@ -1,17 +1,21 @@
-const mongoose = require(mongoose);
-const connectDB = async () => {
-   
-    try{
+const mongoose = require("mongoose");
 
-        await mongoose.connect("mongodb://127.0.0.1:27017/libraryDB");
+const connectDB = async () => {
+
+    try {
+
+        await mongoose.connect(
+            "mongodb://127.0.0.1:27017/libraryDB"
+        );
+
         console.log("MongoDB connected");
 
-    }catch(error){
-        console.error("DB connection error:",error);
+    } catch (error) {
+
+        console.error("DB connection error:", error);
+
         process.exit(1);
-
     }
-
 };
 
 module.exports = connectDB;

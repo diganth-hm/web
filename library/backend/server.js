@@ -1,31 +1,58 @@
+const express = require("express");
 const bcrypt = require("bcryptjs");
-const user = require ("./models/user");
+const User = require("./models/user");
+const connectDB = require("./config/db");
 
-app.post("/signup",async (req,res) =>{
+const app = express();
 
-    try{
-        const {email,password}=req.body;
+// connect database
+connectDB();
 
-        //check the user exisstence
-        const existingUser = await UserActivation.findOne({email});
-        if (existingUser)
-        {
-            return res.json({sucess:false,message:"User already exisits"});
+app.use(express.json());
 
+app.post("/signup", async (req, res) => {
+
+    try {
+
+        const { email, password } = req.body;
+
+        // check user existence
+        const existingUser = await User.findOne({ email });
+
+        if (existingUser) {
+            return res.json({
+                success: false,
+                message: "User already exists"
+            });
         }
-        const newUser =new user({
+
+        // hash password
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        // create user
+        const newUser = new User({
             email,
-            passwword:hashedPassword
+            password: hashedPassword
         });
-       await newUser.save();
 
-       res.json({sucess :true ,message:"user created"});
+        // save user
+        await newUser.save();
 
-        }
+        res.json({
+            success: true,
+            message: "User created"
+        });
 
-        catch(error){
-            console.error(error);
-            res.status(500).json({success:false});
+    } catch (error) {
 
-        }
+        console.error(error);
+
+        res.status(500).json({
+            success: false
+        });
+    }
+});
+
+app.listen(5000, () => {
+    console.log("Server running on port 5000");
 });
