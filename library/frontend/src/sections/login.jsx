@@ -1,4 +1,5 @@
 import { useState } from "react";
+import log from "../assets/log.png";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -29,9 +30,11 @@ function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+    
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center ">
+      <div className="p-10 flex bg-blue-800 w-100 h-100 gap-10">
       
-
+   <div className="  bg-white p-1 rounded-lg shadow-lg w-96"><img src={log} alt="cover"  /></div>
       <div className="bg-white p-10 rounded-lg shadow-lg w-96">
         
         <h1 className="text-2xl font-semibold text-center mb-8">
@@ -67,6 +70,7 @@ function Login() {
           Login
         </button>
 
+      </div>
       </div>
 
     </div>
