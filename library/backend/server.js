@@ -2,55 +2,55 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const User = require("./models/user");
 const connectDB = require("./config/db");
+const cors = require("cors");
 
 const app = express();
-
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true
+  })
+);
 // connect database
 connectDB();
+
 
 app.use(express.json());
 
 app.post("/signup", async (req, res) => {
+  try {
+    const { name, department, section, usn, password } = req.body;
 
-    try {
+    const existingUser = await User.findOne({ usn });
 
-        const { email, password } = req.body;
-
-        // check user existence
-        const existingUser = await User.findOne({ email });
-
-        if (existingUser) {
-            return res.json({
-                success: false,
-                message: "User already exists"
-            });
-        }
-
-        // hash password
-        const hashedPassword = await bcrypt.hash(password, 10);
-
-        // create user
-        const newUser = new User({
-            email,
-            password: hashedPassword
-        });
-
-        // save user
-        await newUser.save();
-
-        res.json({
-            success: true,
-            message: "User created"
-        });
-
-    } catch (error) {
-
-        console.error(error);
-
-        res.status(500).json({
-            success: false
-        });
+    if (existingUser) {
+      return res.json({
+        success: false,
+        message: "User already exists"
+      });
     }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newUser = new User({
+      name,
+      department,
+      section,
+      usn,
+      password: hashedPassword
+    });
+
+    await newUser.save();
+
+    res.json({
+      success: true,
+      message: "User created"
+    });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false });
+  }
 });
 
 app.listen(5000, () => {

@@ -10,23 +10,23 @@ app.use(express.json());
 app.post("/login",async (req,res) => {
 
     try{
-        const {email,password} =req.body;
-        const user = await User.findOne({email});
+        const {usn,password} =req.body;
+        const user = await User.findOne({usn});
         if (!user){
             return res.json({success:false,message:"user not found"});
 
         }
         const isMatch = await bcrypt.compare(password,user.password);
 
-        if (!isMatching ){
+        if (!isMatch){
             return res.json({success:false,message:"invalid password"  });
 
         }
-        res.json({sucess:true});
+        res.json({sucess:true,user});
        }
        catch(error)
        {
         console.error(error);
-        res.status(500).json({sucess:false});
+        res.status(500).json({success:false});
        }
 });
