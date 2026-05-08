@@ -1,25 +1,28 @@
 import { useState } from "react";
 import log from "../assets/log.png";
+import {useNavigate} from "react-router-dom";
 
 function Login() {
-  const [email, setEmail] = useState("");
+  const navigate = useNavigate();
+  const [usn, setUsn] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = async () => {
     try {
-      const res = await fetch("http://localhost:5000/login", {
+      const res = await fetch("http://localhost:5000/api/users/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ usn, password })
       });
 
       const data = await res.json();
 
       if (data.success) {
         alert("login success");
-      } else {
+      }
+      else {
         alert(data.message);
       }
 
@@ -42,12 +45,12 @@ function Login() {
         </h1>
 
         <div className="mb-5">
-          <p className="mb-1 text-sm">Email</p>
+          <p className="mb-1 text-sm">USN</p>
           <input
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            placeholder="Enter your USN"
+            value={usn}
+            onChange={(e) => setUsn(e.target.value)}
             className="w-full p-2 border rounded"
           />
         </div>
@@ -68,6 +71,12 @@ function Login() {
           className="w-full bg-black text-white p-2 rounded"
         >
           Login
+        </button>
+<button
+          
+          className="w-full mt-5 bg-black text-white p-2 rounded"
+        >
+          Singup
         </button>
 
       </div>

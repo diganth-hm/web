@@ -37,11 +37,10 @@ const userSchema = new mongoose.Schema({
   }
 }, { timestamps: true });
 
-userSchema.pre("save", function (next) {
+userSchema.pre("save", function () {
   if (!this.rfid) {
     this.rfid = "RFID" + Math.floor(100000 + Math.random() * 900000);
   }
-  next();
 });
 
 module.exports = mongoose.model("User", userSchema);
