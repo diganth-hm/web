@@ -1,32 +1,47 @@
-
-const bcrypt = require("bcryptjs");
-const User = require("./models/user");
 const express = require("express");
-const app = express();
+const bcrypt = require("bcryptjs");
 
-app.use(express.json());
+const User = require("../models/user");
 
+const router = express.Router();
 
-app.post("/login",async (req,res) => {
+router.post("/login", async (req, res) => {
+  try {
+    const { usn, password } = req.body;
 
-    try{
-        const {usn,password} =req.body;
-        const user = await User.findOne({usn});
-        if (!user){
-            return res.json({success:false,message:"user not found"});
+    const user = await User.findOne({ usn });
 
-        }
-        const isMatch = await bcrypt.compare(password,user.password);
+    if (!user) {
+      return res.json({
+        success: false,
+        message: "User not found"
+      });
+    }
 
-        if (!isMatch){
-            return res.json({success:false,message:"invalid password"  });
+    const isMatch = await bcrypt.compare(
+      password,
+      user.password
+    );
 
-        }
-        res.json({sucess:true,user});
-       }
-       catch(error)
-       {
-        console.error(error);
-        res.status(500).json({success:false});
-       }
+    if (!isMatch) {
+      return res.json({
+        success: false,
+        message: "Invalid password"
+      });
+    }
+
+    res.json({
+      success: true,
+      user
+    });
+
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      success: false
+    });
+  }
 });
+
+module.exports = router;
