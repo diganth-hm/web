@@ -11,20 +11,26 @@ function Login() {
 
   const handleLogin = async () => {
     if (!usn || !password) {
-      alert("please fill the require details");
+      alert("Please fill the required details");
       return;
     }
 
     try {
       setLoading(true);
 
-      const res = await fetch("http://localhost:5000/api/users/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ usn, password })
-      });
+      const res = await fetch(
+        "http://localhost:5000/api/users/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            usn,
+            password
+          })
+        }
+      );
 
       if (!res.ok) {
         throw new Error("Server error");
@@ -49,6 +55,7 @@ function Login() {
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+
       <div className="p-10 flex bg-blue-800 rounded-xl gap-10">
 
         <div className="bg-white p-1 rounded-lg shadow-lg w-96">
@@ -101,7 +108,9 @@ function Login() {
           </button>
 
         </div>
+
       </div>
+
     </div>
   );
 }
