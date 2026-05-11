@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import log from "";
+import log from "../../assets/log.png";
 
 function Signup() {
   const navigate = useNavigate();
@@ -69,90 +69,95 @@ function Signup() {
   return (
     <div className="min-h-screen bg-blue-100 flex items-center justify-center">
 
-  <div className="bg-blue-800">
-    <div><img src="logo" alt="" /></div>
-<div className="bg-white p-10 rounded-xl shadow-lg w-[450px]">
+      <div className="bg-blue-800 p-10 rounded-xl flex gap-10">
 
-        <h1 className="text-3xl font-bold text-center mb-8">
-          SINGUP
-        </h1>
-
-        <div className="mb-4">
-          <p className="mb-1 text-sm">Name</p>
-
-          <input
-            type="text"
-            placeholder="Enter your name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="w-full border p-2 rounded"
-          />
+        <div className="bg-white p-2 rounded-xl shadow-lg w-96">
+          <img src={log} alt="logo" />
         </div>
 
-        <div className="mb-4">
-          <p className="mb-1 text-sm">Department</p>
+        <div className="bg-white p-10 rounded-xl shadow-lg w-[450px]">
 
-          <input
-            type="text"
-            placeholder="Enter department"
-            value={department}
-            onChange={(e) => setDepartment(e.target.value)}
-            className="w-full border p-2 rounded"
-          />
+          <h1 className="text-3xl font-bold text-center mb-8">
+            SIGNUP
+          </h1>
+
+          <div className="mb-4">
+            <p className="mb-1 text-sm">Name</p>
+
+            <input
+              type="text"
+              placeholder="Enter your name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="w-full border p-2 rounded"
+            />
+          </div>
+
+          <div className="mb-4">
+            <p className="mb-1 text-sm">Department</p>
+
+            <input
+              type="text"
+              placeholder="Enter department"
+              value={department}
+              onChange={(e) => setDepartment(e.target.value)}
+              className="w-full border p-2 rounded"
+            />
+          </div>
+
+          <div className="mb-4">
+            <p className="mb-1 text-sm">Section</p>
+
+            <input
+              type="text"
+              placeholder="Enter section"
+              value={section}
+              onChange={(e) => setSection(e.target.value)}
+              className="w-full border p-2 rounded"
+            />
+          </div>
+
+          <div className="mb-4">
+            <p className="mb-1 text-sm">USN</p>
+
+            <input
+              type="text"
+              placeholder="Enter USN"
+              value={usn}
+              onChange={(e) => setUsn(e.target.value)}
+              className="w-full border p-2 rounded"
+            />
+          </div>
+
+          <div className="mb-6">
+            <p className="mb-1 text-sm">Password</p>
+
+            <input
+              type="password"
+              placeholder="Enter password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full border p-2 rounded"
+            />
+          </div>
+
+          <button
+            onClick={handleSignup}
+            disabled={loading}
+            className="w-full bg-black text-white p-2 rounded"
+          >
+            {loading ? "Creating Account.." : "Signup"}
+          </button>
+
+          <button
+            onClick={() => navigate("/")}
+            className="w-full mt-4 border p-2 rounded bg-black text-white"
+          >
+            Back to Login
+          </button>
+
         </div>
 
-        <div className="mb-4">
-          <p className="mb-1 text-sm">Section</p>
-
-          <input
-            type="text"
-            placeholder="Enter section"
-            value={section}
-            onChange={(e) => setSection(e.target.value)}
-            className="w-full border p-2 rounded"
-          />
-        </div>
-
-        <div className="mb-4">
-          <p className="mb-1 text-sm">USN</p>
-
-          <input
-            type="text"
-            placeholder="Enter USN"
-            value={usn}
-            onChange={(e) => setUsn(e.target.value)}
-            className="w-full border p-2 rounded"
-          />
-        </div>
-
-        <div className="mb-6">
-          <p className="mb-1 text-sm">Password</p>
-
-          <input
-            type="password"
-            placeholder="Enter password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full border p-2 rounded"
-          />
-        </div>
-
-        <button
-          onClick={handleSignup}
-          disabled={loading}
-          className="w-full bg-black text-white p-2 rounded"
-        >
-          {loading ? "Creating Account..." : "Signup"}
-        </button>
-
-        <button
-          onClick={() => navigate("/")}
-          className="w-full mt-4 border p-2 rounded bg-black text-white"
-        >
-          Back to Login
-        </button>
-
-      </div>
       </div>
 
     </div>
