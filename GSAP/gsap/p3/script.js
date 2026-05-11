@@ -11,9 +11,13 @@ gsap.from("#page2 #circle",{
     delay:0.9,
     duration:2,
     rotate:720,
-    trigger:"#psge2 #circle",
+    scrollTrigger:{
+    trigger:"#page2 #circle",
     scroller:"body",
-
+    markers:true,
+    start:"top 60%",
+    scrub:2
+    }
   
   
     
@@ -22,5 +26,12 @@ gsap.from("#page3 #circle",{
     scale:0,
     delay:0.9,
     duration:2,
-    rotate:720
+    rotate:720,
+       scrollTrigger:{
+    trigger:"#page3 #circle",
+    scroller:"body",
+     markers:true,
+    start:"top 60%",
+    scrub:2
+    }
 })
