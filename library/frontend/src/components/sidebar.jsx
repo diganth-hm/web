@@ -3,9 +3,10 @@ function Sidebar()
 {
     return(
         <div className="bg-blue-800 h-screen w-1/5 rounded-lg   text-white">
-         <div className="flex  items-center gap-3 mb-10 ml-10">
-           <div className="flex mt-10 ml-6"><LibraryBig size={35}/>
-            <h1 className="text-3xl font-bold">LibraryMS</h1>
+         <div className="flex bg-blue-900 items-center gap-3 rounded-lg ">
+           <div className="flex mt-10 ml-12 mb-10">
+            <LibraryBig size={45}/>
+            <h1 className="ml-5 text-3xl font-bold">LibraryMS</h1>
             </div>
             </div>   
 
