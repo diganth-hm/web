@@ -40,7 +40,7 @@ function Login() {
 
       if (data.success) {
         alert("Login success");
-        navigate("/dashboard");
+        navigate("/User");
       } else {
         alert(data.message);
       }
