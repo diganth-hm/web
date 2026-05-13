@@ -22,7 +22,7 @@ function Navbar() {
       <button className="p-2 hover:bg-gray-200 rounded-full transition">
         <Bell size={28} />
       </button>
-     <button><UserPen size={10} className="ml-10  bg-blue-600 rounded-3xl h-10 w-10"/>
+     <button><UserPen size={10} className="ml-10  bg-blue-500 rounded-3xl h-10 w-10"/>
      </button>
 </div>
     </div>
