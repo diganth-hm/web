@@ -1,0 +1,654 @@
+/* ================= FONT ================= */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap');
+
+/* ================= RESET ================= */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+  background: #fff;
+}
+
+/* ================= NAVBAR ================= */
+.nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(10px, 2vw, 15px) 5%;
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.logo{
+  width: clamp(60px, 8vw, 80px);
+  height: auto;
+  cursor: pointer;
+}
+
+.nav a{
+  text-decoration: none;
+  color: #000;
+  margin: 0 clamp(8px, 1vw, 12px);
+  font-size: clamp(13px, 2vw, 20px);
+  font-weight: 500;
+}
+
+.nav-links{
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 2vw, 40px);
+  margin-left: clamp(20px, 5vw, 60px);
+}
+
+.nav-actions{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.contact,
+.sample{
+  padding: clamp(8px, 1vw, 14px) clamp(16px, 3vw, 40px);
+  border: none;
+  background: #F9BF68;
+  color: #fff;
+  border-radius: clamp(20px, 3vw, 30px);
+  cursor: pointer;
+  font-size: clamp(12px, 2vw, 16px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ================= HERO ================= */
+.hero{
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+  color: #fff;
+}
+
+.video{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+.hero::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: -1;
+}
+
+/* ================= HERO BOX ================= */
+.hero-box{
+  position: relative;
+  z-index: 2;
+
+  width: 90%;
+  max-width: 1200px;
+
+  padding: clamp(40px, 6vw, 80px) clamp(20px, 4vw, 80px);
+  margin: clamp(40px, 6vw, 60px) auto;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: clamp(20px, 4vw, 40px);
+}
+
+/* ================= TEXT ================= */
+.hero-content{
+  max-width: clamp(300px, 45vw, 600px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 2vw, 18px);
+  margin-left: clamp(-140px, -8vw, -40px);
+}
+
+.hero-content h1{
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(32px, 8vw, 100px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+/* ================= BUTTON ================= */
+.team{
+  margin-left: auto;
+  margin-top: clamp(40px, 10vw, 120px);
+
+  padding: clamp(14px, 2vw, 22px) clamp(24px, 6vw, 60px);
+  border: none;
+  background: #F9BF68;
+  color: #fff;
+  border-radius: clamp(25px, 5vw, 40px);
+  cursor: pointer;
+  font-size: clamp(16px, 3vw, 25px);
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.team:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* ================= FRAME ================= */
+/*
+  --frame-offset: how far the frame lines extend beyond the hero-box.
+  Using clamp() makes it scale smoothly from mobile → desktop.
+*/
+.hero-box{
+  --frame-offset: clamp(20px, 4vw, 60px);
+  --frame-bottom: clamp(15px, 2vw, 30px);
+}
+
+/* Top border line */
+.hero-box::before{
+  content: "";
+  position: absolute;
+  top: calc(-1 * var(--frame-offset));
+  left: calc(-1 * var(--frame-offset));
+  width: calc(100% + 2 * var(--frame-offset));
+  height: 2px;
+  background: #fff;
+  box-shadow: 0 0 6px rgba(0,0,0,0.8);
+  z-index: 10;
+}
+
+.line-left{
+  position: absolute;
+  top: calc(-1 * var(--frame-offset));
+  left: calc(-1 * var(--frame-offset));
+  width: 2px;
+  height: calc(100% + 2 * var(--frame-offset));
+  background: #fff;
+  box-shadow: 0 0 6px rgba(0,0,0,0.8);
+  z-index: 10;
+}
+
+/*
+  line-right is INTENTIONALLY shorter than the full frame height.
+  It stops before reaching the bottom frame edge, leaving a gap
+  that the diagonal line bridges — creating the notched corner.
+  Original ratio: top offset=120px, full left height=139% → right only 120%.
+  We replicate this: right line ends at ~(100% + top-offset) not (100% + 2*offset).
+*/
+.line-right{
+  position: absolute;
+  top: calc(-1 * var(--frame-offset));
+  right: calc(-1 * var(--frame-offset));
+  width: 2px;
+  height: calc(100% + var(--frame-bottom));
+  background: #fff;
+  box-shadow: 0 0 6px rgba(0,0,0,0.8);
+  z-index: 10;
+}
+
+/* Bottom horizontal line — stops before the right corner (diagonal fills the gap) */
+.line-bottom{
+  position: absolute;
+  bottom: calc(-1 * var(--frame-bottom));
+  left: calc(-1 * var(--frame-offset));
+  width: calc(86% + var(--frame-offset));
+  height: 2px;
+  background: #fff;
+  box-shadow: 0 0 6px rgba(0,0,0,0.8);
+  z-index: 10;
+}
+
+/*
+  Diagonal bridges the notched corner:
+  - Its right-bottom corner sits at the frame's bottom-right corner
+  - transform-origin: right bottom → rotates around that corner
+  - rotate(-45deg) → the left end swings up-left, creating the diagonal slash
+  - Width must span from line-bottom's right end to line-right's bottom end
+*/
+.line-diagonal{
+  position: absolute;
+  right: calc(-1 * var(--frame-offset));
+  bottom: calc(-1 * var(--frame-bottom));
+  width: calc(14% + var(--frame-offset));
+  height: 2px;
+  background: #fff;
+  box-shadow: 0 0 6px rgba(0,0,0,0.8);
+  transform: rotate(-45deg);
+  transform-origin: right bottom;
+  z-index: 10;
+}
+
+/* ================= BULLETIN ================= */
+.bulletin{
+  position: absolute;
+  bottom: calc(-1 * var(--frame-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: clamp(140px, 25vw, 267px);
+  height: clamp(55px, 6vw, 65px);
+
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(200px);
+  -webkit-backdrop-filter: blur(200px);
+
+  color: #fff;
+  overflow: hidden;
+
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 3;
+
+  border: 1px solid rgba(255,255,255,0.2);
+
+  /* ✅ FIXED FADE */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 30%,
+    black 70%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 30%,
+    black 70%,
+    transparent 100%
+  );
+
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+/* ================= TRACK (ADDED - IMPORTANT) ================= */
+.track{
+  display: flex;
+  gap: clamp(24px, 4vw, 60px);
+  width: max-content;
+
+  /* ✅ FIXED ANIMATION */
+  animation: scrollX 20s linear infinite;
+}
+
+/* ================= TEXT ================= */
+.track span{
+  white-space: nowrap;
+  font-size: clamp(13px, 1.8vw, 20px);
+  font-weight: 800;
+}
+
+/* ================= FIXED ANIMATION ================= */
+@keyframes scrollX{
+  from{ transform: translateX(0); }
+  to{ transform: translateX(-50%); }
+}
+
+.bulletin:hover .track{
+  animation-play-state: paused;
+}
+/* ================= ABOUT ================= */
+.about{
+  width: 100%;
+  padding: clamp(60px, 10vw, 120px) 5%;
+}
+
+.about-services{
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: clamp(40px, 8vw, 80px);
+}
+
+.about-left{
+  max-width: 480px;
+  font-size:25px;
+  line-height: 1.4;
+}
+
+.about-title{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: clamp(32px, 6vw, 48px);
+}
+
+.about-left button{
+  margin-top: clamp(20px, 3vw, 40px);
+  width: clamp(180px, 20vw, 214px);
+  height: clamp(55px, 6vw, 73px);
+  border-radius: 68px;
+  font-size:20px;
+  background: #F9BF68;
+    border: none;
+  outline: none;
+  color: #fff;
+}
+
+/* VIDEO */
+.about-video{
+  width: 100%;
+  max-width: 648px;
+  aspect-ratio: 16/9;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.about-video video{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ================= PRODUCT ================= */
+.product-industry {
+  max-width: 1200px;
+  margin: 120px auto;
+  padding: 0 5%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 80px;
+}
+
+.product-images {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+
+  transform: translateX(-60px); 
+}
+.industry-image {
+  width: 60%;
+  max-width: 452px;
+  border-radius: 30px;
+}
+
+.product-image {
+  width: 60%;
+  max-width: 456px;
+  position: absolute;
+  top: 35%;
+  left: 20%;
+  border-radius: 30px;
+}
+
+.product-title {
+  font-family: 'Montserrat';
+  font-size: clamp(28px, 3vw, 36px);
+  font-weight: 800;
+
+  margin-bottom: 20px; 
+}
+.product-content h2 {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-top: 20px;
+}
+.product-sample{
+  padding: clamp(10px, 2vw, 15px) clamp(10px, 4vw, 30px);
+  background: #F9BF68;
+  border-radius: 30px;
+  color: #fff;
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* ---------- Desktop / large laptop (≤ 1400px) ---------- */
+@media (max-width: 1400px){
+
+  .hero-content{
+    margin-left: clamp(-80px, -4vw, -40px);
+  }
+
+  .team{
+    margin-top: clamp(60px, 8vw, 100px);
+  }
+  /* Frame lines use --frame-offset via clamp() — no manual override needed */
+}
+
+/* ---------- Laptop screens (≤ 1366px, e.g. 1280×800 or 1366×768) ---------- */
+@media (max-width: 1366px){
+
+  /* Frame offset: must stay within the viewport margin.
+     At 1280px: hero-box is max-width 1200px → each side has only 40px margin.
+     28px < 40px so the frame lines never bleed off-screen. */
+  .hero-box{
+    --frame-offset: 28px;
+    --frame-bottom: 20px; /* explicit so the diagonal notch stays proportional */
+  }
+
+  /* Bulletin: pin it a fixed distance from the bottom of hero-box */
+  .bulletin{
+    bottom: -50px;
+    width: clamp(200px, 22vw, 280px);
+    height: clamp(52px, 6vh, 65px);
+  }
+}
+
+/* ---------- Tablet (≤ 1024px) ---------- */
+@media (max-width: 1024px){
+
+  .hero-box{
+    flex-direction: column;
+    align-items: flex-start;
+    padding: clamp(30px, 5vw, 60px) clamp(16px, 4vw, 60px);
+  }
+
+  .hero-content{
+    margin-left: 0;
+    max-width: 100%;
+  }
+
+  .team{
+    margin-left: 0;
+    margin-top: clamp(20px, 4vw, 40px);
+  }
+
+  /* Frame lines: reduce offset so they don't overflow viewport */
+  .hero-box{
+    --frame-offset: clamp(12px, 3vw, 40px);
+  }
+
+  /* Bulletin: slightly wider on tablet */
+  .bulletin{
+    width: clamp(220px, 50vw, 340px);
+    bottom: clamp(20px, 3vh, 40px);
+  }
+
+  .about-services{
+    flex-direction: column;
+  }
+
+  .product-industry{
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .product-image{
+    position: relative;
+    top: 20px;
+    left: 0;
+  }
+}
+
+/* ---------- Mobile (≤ 768px) ---------- */
+@media (max-width: 768px){
+
+  .nav{
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px 5%;
+  }
+
+  .hero-box{
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px 16px;
+    /* Collapse frame offset — lines are hidden below anyway */
+    --frame-offset: 0px;
+  }
+
+  /* Hide decorative frame lines on mobile — they cannot render correctly */
+  .hero-box::before,
+  .line-left,
+  .line-right,
+  .line-bottom,
+  .line-diagonal{
+    display: none;
+  }
+
+  .hero-content{
+    margin-left: 0;
+    max-width: 100%;
+  }
+
+  .hero-content h1{
+    font-size: clamp(32px, 10vw, 52px);
+  }
+
+  .team{
+    margin-left: 0;
+    margin-top: 24px;
+  }
+
+  /* Bulletin: full-width-ish strip on mobile */
+  .bulletin{
+    width: clamp(200px, 80vw, 320px);
+    height: clamp(44px, 12vw, 58px);
+    bottom: clamp(16px, 3vh, 32px);
+  }
+
+  .track span{
+    font-size: clamp(12px, 3.5vw, 16px);
+  }
+
+  .about-title{
+    font-size: clamp(22px, 6vw, 32px);
+  }
+
+  .about-left button{
+    width: 100%;
+  }
+
+  .product-industry{
+    flex-direction: column;
+    text-align: center;
+    margin: 60px auto;
+    gap: 32px;
+  }
+
+  .product-image{
+    position: relative;
+    top: 16px;
+    left: 0;
+  }
+}
+
+/* ---------- Very small phones (≤ 480px) ---------- */
+@media (max-width: 480px){
+
+  .hero-content h1{
+    font-size: clamp(28px, 9vw, 40px);
+  }
+
+  .bulletin{
+    width: 88vw;
+    height: 44px;
+    bottom: 16px;
+  }
+
+  .track span{
+    font-size: 12px;
+  }
+}
+/* Container */
+.hero-video {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;   /* optional: control width */
+  margin: 60px auto;   /* center it nicely */
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/* Video */
+.hero-video-player {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+/* Play button overlay */
+.playbut {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 40px;
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+
+/* Hover effect */
+.playbut:hover {
+  background: rgba(0, 0, 0, 0.7);
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Smooth fade-in */
+.playbut {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
