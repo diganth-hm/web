@@ -1,0 +1,50 @@
+/* App container */
+.app {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background: #0f172a;
+  min-height: 100vh;
+  color: white;
+}
+
+/* Grid layout for cards */
+.cards-grid {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(4, 120px);
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Individual card */
+.card {
+  width: 120px;
+  height: 120px;
+  background: #1e293b;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+}
+
+/* Hover effect */
+.card:hover {
+  transform: scale(1.05);
+  background: #334155;
+}
+
+/* Flipped card */
+.card.flipped {
+  background: white;
+  color: black;
+}
+
+/* Matched cards */
+.card.matched {
+  background: #22c55e;
+  color: white;
+}
